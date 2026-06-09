@@ -1,1 +1,13 @@
+create privatekey and certificate
 
+>openssl req -newkey rsa:2048 -nodes -keyout server.key -x509 -days 365 -out server.crt
+
+start server now
+
+>openssl s_server -key server.key -cert server.crt -accept 4433
+
+Now on second terminal
+test that server
+
+>openssl s_client -connect localhost:4433
+>openssl s_client -connect localhost:4433 -quiet  <--runserver in quiet mode
