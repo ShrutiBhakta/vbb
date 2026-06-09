@@ -1,0 +1,36 @@
+file->new database->
+certificate->New cetificate->templete CA->Apply Extensions
+->subject->internal name rootCA->
+contry name 	    IN
+stateOrProvinceName MH
+localityName	    Pune
+organizationName    CDAC
+organizationalUnitName ACTS
+commonName		rootCA
+emailAddress 	cdac@gmail.com
+->generate a new key-> create->
+extensions->time range->10 year->Apply->
+Advance->ok
+
+same for subCA change ony extensions-> time range 5 years
+
+Now for anurupkaran -< personal cetificate
+New certificate->template->TLS_server->
+follow same as rootCA dont do extra change.
+extensions->time range default 365 days.
+ 
+export all certificates now
+select rootCA->export->choose location->export
+select subCA->export->choose location->export
+select anurupkaran->export->choose location->choose extension PKCS#12(*pfx)->ok
+
+[+] + R ->certmgr.msc-> Trusted root certificatoin->right click on certificate->all tasks->import->
+choose rootCA import
+next then
+Intermediate certifications->right click certificate->all tasks->import->choose subCA->import
+next for personal
+personal->rightclick->all tasks->import->choose anurupkaran->import
+
+now your digital dignature is ready lest apply it on pdf
+open Adobe Acrobat->menue->open pdf->view more->use a certificate->Digitally sign->
+select area where you apply signature->choose certificate->sign.
